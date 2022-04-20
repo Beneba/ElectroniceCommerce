@@ -8,9 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 function Homepage() {
   const [products, setProducts] = useState([]);
-  const dispatch = useDispatch();
   const { cartItems } = useSelector(state => state.cartReducer);
-
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => { 
     getData();
@@ -18,6 +18,7 @@ function Homepage() {
 
   async function getData() {
     try {
+      setLoading(true)
       const users = await getDocs(collection(fireDB, "products"));
       const productsArray = [];
       users.forEach((doc) => {
@@ -26,11 +27,13 @@ function Homepage() {
           ...doc.data(),
         };
         productsArray.push(obj);
+         setLoading(false)
       });
 
       setProducts(productsArray); 
     } catch (error) {
       console.log(error);
+       setLoading(false)
     }
   }
 
@@ -43,7 +46,7 @@ function Homepage() {
   };
  
   return (
-    <Layout>
+    <Layout loading ={loading} >
       <div className="container">
         <div className="row">
           {products.map((product) => {

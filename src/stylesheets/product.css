@@ -30,5 +30,13 @@
 }
 
 .product-info-img{
-    height:70vh;
+    height:60vh;
+}
+
+.total-amount{
+    background-color: blanchedalmond;
+    padding:10px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+
 }
