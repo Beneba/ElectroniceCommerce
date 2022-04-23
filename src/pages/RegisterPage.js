@@ -10,6 +10,7 @@ function RegisterPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [cpassword, setCPassword] = useState('');
+  
   const [loading, setLoading] = useState(false);
 
   const auth = getAuth();
@@ -50,8 +51,8 @@ const register = async ()=> {
             <h2> Register</h2>
             <hr />
             <input type="text" className ="form-control" placeholder ="email" value ={email} onChange = {(e) =>setEmail(e.target.value)} />
-            <input type="text" className ="form-control" placeholder ="Password" value ={password} onChange = {(e) =>setPassword(e.target.value)} />
-            <input type="text" className ="form-control" placeholder ="confirm Password" value ={cpassword} onChange = {(e) =>setCPassword(e.target.value)} />
+            <input type="password" className ="form-control" placeholder ="Password" value ={password} onChange = {(e) =>setPassword(e.target.value)} />
+            <input type="password" className ="form-control" placeholder ="confirm Password" value ={cpassword} onChange = {(e) =>setCPassword(e.target.value)} />
               <button className="my-3" onClick={register} >Register</button>
               <hr />
               <Link to ="/login">Click Here To Login</Link>
