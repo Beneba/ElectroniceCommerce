@@ -10,6 +10,9 @@ function Homepage() {
   const [products, setProducts] = useState([]);
   const { cartItems } = useSelector(state => state.cartReducer);
   const [loading, setLoading] = useState(false);
+  const [searchKey, setSeacrchKey] = useState('');
+  const [filterType, setFilterType] = useState('');
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => { 
@@ -48,8 +51,22 @@ function Homepage() {
   return (
     <Layout loading ={loading} >
       <div className="container">
+        <div className="d-flex w-50">
+          <input type="text" className= "form-control mx-2" placeholder ="search items" value={searchKey} onChange={(e)=>{setSeacrchKey(e.target.value)}} />
+          <select name=""  className= "form-control mt-3" value={filterType} onChange={(e)=>{setFilterType(e.target.value)}}>
+            <option value=''> All </option>
+            <option value="electronice"> Electronice  </option>
+            <option value="mobile"> Mobiles </option>
+            <option value="fashion"> Fashion</option>
+               
+           
+          </select>
+        </div>
         <div className="row">
-          {products.map((product) => {
+          {products
+          .filter((obj)=>obj.name.toLowerCase().includes(searchKey))
+          .filter((obj)=>obj.categories.toLowerCase().includes(filterType))
+          .map((product) => {
             return (
               <div className="col-md-3">
                 <div className="m-2 p-1 product position-relative">

@@ -1,5 +1,5 @@
 const initialState = {
-  cartItems: [],
+  cartItems: ['items'],
 };
 
 export const cartReducer = (state = initialState, action) => {
